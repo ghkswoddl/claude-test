@@ -1,0 +1,120 @@
+/* Reset + base element styles + typography utility classes */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+figure,
+blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-body);
+  font-family: "Haas Groot Disp", "Haas", Inter, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  line-height: 1.25;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* typography utility classes — values from CLAUDE.md typography table */
+
+.text-display-lg {
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+
+.text-display-md {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+
+.text-title-lg {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.12px;
+  color: var(--color-ink);
+}
+
+.text-title-md {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-ink);
+}
+
+.text-title-sm {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-ink);
+}
+
+.text-label-md {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-ink);
+}
+
+.text-body-md {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--color-body);
+}
+
+.text-caption {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.16px;
+  color: var(--color-muted);
+}

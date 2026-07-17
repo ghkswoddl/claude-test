@@ -1,0 +1,9 @@
+{
+  "name": "my-blog",
+  "private": true,
+  "type": "module",
+  "description": "Static blog site (plain HTML/CSS/JS). This package.json exists only so Node can run scripts/build-index.js as an ES module — it is not a build step for the site itself, which requires no bundling.",
+  "scripts": {
+    "build-index": "node scripts/build-index.js"
+  }
+}

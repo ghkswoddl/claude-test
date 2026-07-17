@@ -1,0 +1,115 @@
+/* Design tokens — derived from CLAUDE.md / DESIGN-airtable.md */
+
+:root {
+  /* colors — light (default) */
+  --color-primary: #181d26;
+  --color-primary-active: #0d1218;
+  --color-ink: #181d26;
+  --color-body: #333840;
+  --color-muted: #41454d;
+  --color-hairline: #dddddd;
+  --color-border-strong: #9297a0;
+  --color-canvas: #ffffff;
+  --color-surface-soft: #f8fafc;
+  --color-surface-strong: #e0e2e6;
+  --color-surface-dark: #181d26;
+  --color-surface-dark-elevated: #1d1f25;
+  --color-signature-coral: #aa2d00;
+  --color-signature-forest: #0a2e0e;
+  --color-signature-cream: #f5e9d4;
+  --color-signature-peach: #fcab79;
+  --color-signature-mint: #a8d8c4;
+  --color-signature-yellow: #f4d35e;
+  --color-signature-mustard: #d9a441;
+  --color-on-primary: #ffffff;
+  --color-on-dark: #ffffff;
+  --color-link: #1b61c9;
+  --color-link-active: #1a3866;
+  --color-info: #254fad;
+  --color-info-border: #458fff;
+  --color-success: #006400;
+  --color-success-border: #39bf45;
+
+  /* spacing */
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+  --space-section: 96px;
+
+  /* radius — no pill token; pricing-only, not used in this project */
+  --radius-xs: 2px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* layout */
+  --container-max: 1280px;
+
+  /* breakpoints (documented here for reference; media queries hardcode px per CLAUDE.md) */
+  --bp-tablet: 768px;
+  --bp-desktop: 1024px;
+  --bp-wide: 1440px;
+}
+
+/* dark overrides — OS preference is the default signal, [data-theme] always wins */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-canvas: #14161b;
+    --color-surface-soft: #1b1e24;
+    --color-surface-strong: #262a32;
+    --color-ink: #f2f3f5;
+    --color-body: #c7cad1;
+    --color-muted: #9297a0;
+    --color-hairline: #33373f;
+    --color-border-strong: #4a4f59;
+    --color-on-primary: #14161b;
+    --color-primary: #f2f3f5;
+    --color-primary-active: #d8dae0;
+    --color-link: #6ea1ff;
+    --color-link-active: #a9c6ff;
+    --color-info-border: #5c9dff;
+    --color-success-border: #4fd65b;
+    /* signature-* colors stay as authored — those cards carry their own contrast */
+  }
+}
+
+[data-theme="dark"] {
+  --color-canvas: #14161b;
+  --color-surface-soft: #1b1e24;
+  --color-surface-strong: #262a32;
+  --color-ink: #f2f3f5;
+  --color-body: #c7cad1;
+  --color-muted: #9297a0;
+  --color-hairline: #33373f;
+  --color-border-strong: #4a4f59;
+  --color-on-primary: #14161b;
+  --color-primary: #f2f3f5;
+  --color-primary-active: #d8dae0;
+  --color-link: #6ea1ff;
+  --color-link-active: #a9c6ff;
+  --color-info-border: #5c9dff;
+  --color-success-border: #4fd65b;
+}
+
+[data-theme="light"] {
+  --color-canvas: #ffffff;
+  --color-surface-soft: #f8fafc;
+  --color-surface-strong: #e0e2e6;
+  --color-ink: #181d26;
+  --color-body: #333840;
+  --color-muted: #41454d;
+  --color-hairline: #dddddd;
+  --color-border-strong: #9297a0;
+  --color-on-primary: #ffffff;
+  --color-primary: #181d26;
+  --color-primary-active: #0d1218;
+  --color-link: #1b61c9;
+  --color-link-active: #1a3866;
+  --color-info-border: #458fff;
+  --color-success-border: #39bf45;
+}

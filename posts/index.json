@@ -1,0 +1,46 @@
+[
+  {
+    "slug": "what-i-learned-today",
+    "title": "오늘 배운 것",
+    "date": "2026-07-17",
+    "tags": [
+      "learning",
+      "html",
+      "css",
+      "javascript"
+    ],
+    "excerpt": "클로드 코드로 프레임워크 없는 블로그를 직접 만들면서, HTML·CSS·JavaScript가 각자 어떤 역할을 맡는지 다시 한번 명확하게 정리할 수 있었다. HTML — 구조와 의미 HTML은 콘텐츠의 뼈대와 의미를 담당한다. article, nav, header, footer 같은…"
+  },
+  {
+    "slug": "designing-with-tokens",
+    "title": "Designing with Tokens: Light and Dark Mode",
+    "date": "2026-07-15",
+    "tags": [
+      "design",
+      "css",
+      "dark-mode"
+    ],
+    "excerpt": "This site's visual language comes from an editorial design system: a white canvas, dark ink type, and a handful of signature surface colors reserved for…"
+  },
+  {
+    "slug": "vanilla-js-markdown-parser",
+    "title": "Building a Markdown Parser in Vanilla JS",
+    "date": "2026-07-10",
+    "tags": [
+      "javascript",
+      "markdown",
+      "tutorial"
+    ],
+    "excerpt": "Most blog engines reach for a markdown library. This one doesn't — it ships a small two-pass parser instead: a block pass that splits source into paragraphs,…"
+  },
+  {
+    "slug": "hello-world",
+    "title": "Hello World",
+    "date": "2026-07-01",
+    "tags": [
+      "intro",
+      "meta"
+    ],
+    "excerpt": "This is the first post on my new blog, built with plain HTML, CSS, and JavaScript — no frameworks, no bundlers, no build step for serving the site itself. I…"
+  }
+]
