@@ -339,6 +339,10 @@ body {
   padding: var(--space-md);
 }
 
+.overlay[hidden] {
+  display: none;
+}
+
 .overlay-card {
   display: flex;
   flex-direction: column;
