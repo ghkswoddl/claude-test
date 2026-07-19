@@ -57,6 +57,27 @@
   }
 }
 
+/* mini web-app portfolio grid — used by the Embed step (CLAUDE.md 작업 사이클 4) */
+
+.app-card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .app-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 /* top nav */
 
 .top-nav {
