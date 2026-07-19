@@ -1,5 +1,17 @@
 [
   {
+    "slug": "claude-code-harness-and-skills",
+    "title": "오늘 배운 것",
+    "date": "2026-07-19",
+    "tags": [
+      "learning",
+      "claude-code",
+      "skills",
+      "subagents"
+    ],
+    "excerpt": "이 블로그에 미니 웹앱을 하나둘 추가하면서, 클로드 코드를 그냥 \"시키는 대로 코드 짜는 도구\"가 아니라 하네스 — 스킬 — 서브에이전트라는 세 층으로 나눠서 쓰는 감을 잡을 수 있었다. 하네스 — 프로젝트를 둘러싼 규칙과 환경 하네스는 클로드가 이 프로젝트 안에서 \"어떻게 일해야…"
+  },
+  {
     "slug": "what-i-learned-today",
     "title": "오늘 배운 것",
     "date": "2026-07-17",
