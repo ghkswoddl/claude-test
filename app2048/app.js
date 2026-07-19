@@ -33,6 +33,9 @@ let state = createInitialState(loadBest());
 // Tracks whether the win overlay has already been dismissed via "계속하기"
 // for the current game, so it doesn't pop back up after continuing.
 let winAcknowledged = false;
+// Element focused right before the overlay opened, so focus can return there
+// (rather than getting lost on <body>) once the overlay closes.
+let elementFocusedBeforeOverlay = null;
 
 function buildBoardGridCells() {
   els.boardGrid.innerHTML = "";
@@ -73,7 +76,34 @@ function render() {
   }
 }
 
+// --- Overlay focus trapping ---
+// A keyboard user tabbing through the page shouldn't be able to reach
+// controls behind the modal (the board, the nav) while it's open.
+function getOverlayFocusable() {
+  return [els.overlayPrimaryBtn, els.overlaySecondaryBtn].filter(
+    (btn) => !btn.hidden
+  );
+}
+
+function trapOverlayFocus(e) {
+  if (e.key !== "Tab") return;
+  const focusable = getOverlayFocusable();
+  if (focusable.length === 0) return;
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+
+  if (e.shiftKey && (document.activeElement === first || !els.overlay.contains(document.activeElement))) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && (document.activeElement === last || !els.overlay.contains(document.activeElement))) {
+    e.preventDefault();
+    first.focus();
+  }
+}
+
 function showOverlay(kind) {
+  elementFocusedBeforeOverlay = document.activeElement;
   els.overlay.hidden = false;
   els.overlayCard.classList.toggle("overlay-card-dark", kind === "gameover");
   els.overlayCard.classList.toggle("overlay-card-light", kind === "win");
@@ -101,10 +131,18 @@ function showOverlay(kind) {
   if (kind === "win") {
     els.overlaySecondaryBtn.hidden = false;
   }
+
+  els.overlayPrimaryBtn.focus();
+  document.addEventListener("keydown", trapOverlayFocus);
 }
 
 function hideOverlay() {
   els.overlay.hidden = true;
+  document.removeEventListener("keydown", trapOverlayFocus);
+  if (elementFocusedBeforeOverlay && document.body.contains(elementFocusedBeforeOverlay)) {
+    elementFocusedBeforeOverlay.focus();
+  }
+  elementFocusedBeforeOverlay = null;
 }
 
 function startNewGame() {

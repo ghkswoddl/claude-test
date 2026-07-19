@@ -1,12 +1,7 @@
 import { parseFrontmatter } from "./frontmatter.js";
 import { renderMarkdown, escapeHtml } from "./markdown.js";
 import { initThemeToggle } from "./theme.js";
-
-function formatDate(isoDate) {
-  const d = new Date(isoDate + "T00:00:00");
-  if (Number.isNaN(d.getTime())) return isoDate;
-  return d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
-}
+import { formatDate } from "./format.js";
 
 function renderNotFound() {
   document.getElementById("hero-title").textContent = "Post not found";
