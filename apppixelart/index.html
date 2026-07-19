@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>픽셀 아트 에디터</title>
+  <meta name="description" content="16x16 격자 위에 클릭과 드래그로 그림을 그리고 PNG로 저장하는 픽셀 아트 에디터." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <a class="back-link" href="../index.html">← 블로그로</a>
+      <h1 class="app-title">픽셀 아트 에디터</h1>
+      <p class="app-subtitle">16×16 격자에 클릭 또는 드래그로 도트를 찍어 그림을 그리고, 완성하면 PNG로 저장하세요.</p>
+    </header>
+
+    <main class="editor-layout">
+      <div class="side-panel">
+        <section class="toolbar" role="toolbar" aria-label="편집 도구">
+          <button type="button" id="eraser-toggle" class="btn btn-secondary" aria-pressed="false">
+            지우개
+          </button>
+          <button type="button" id="clear-all" class="btn btn-secondary">
+            전체 지우기
+          </button>
+          <button type="button" id="save-png" class="btn btn-primary">
+            PNG로 저장
+          </button>
+        </section>
+
+        <section class="palette-panel" aria-label="색상 팔레트">
+          <h2 class="palette-heading">색상 팔레트</h2>
+          <div class="palette-swatches" id="palette-swatches">
+            <!-- 16개 기본 스와치는 editor.js가 동적으로 채운다 -->
+          </div>
+          <div class="palette-custom">
+            <label class="swatch swatch-custom" id="custom-swatch-label" for="custom-color-input"
+              style="--swatch-color:#ffffff" title="커스텀 색상">
+              <span class="sr-only">커스텀 색상 선택</span>
+            </label>
+            <input type="color" id="custom-color-input" class="sr-only-input" value="#ffffff" aria-label="커스텀 색상 값 선택" />
+          </div>
+        </section>
+      </div>
+
+      <div class="canvas-wrap">
+        <div class="canvas-stage">
+          <canvas id="pixel-canvas" class="art-canvas" width="512" height="512"></canvas>
+          <canvas id="grid-overlay" class="art-canvas" width="512" height="512" aria-hidden="true"></canvas>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="editor.js"></script>
+</body>
+</html>
