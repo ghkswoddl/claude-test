@@ -1,0 +1,423 @@
+/* styles.css — self-contained styles for /app2048/.
+   Design tokens below are copied (not imported) from ../styles/tokens.css so this
+   folder stays fully independent per BUILD.md/spec.md "자체 완결" principle.
+   UI chrome (header, scoreboard, buttons, overlay) follows the blog tone; the
+   board/tiles use the traditional 2048 palette (spec.md section 6). */
+
+:root {
+  /* colors — light (default), copied from ../styles/tokens.css */
+  --color-primary: #181d26;
+  --color-primary-active: #0d1218;
+  --color-ink: #181d26;
+  --color-body: #333840;
+  --color-muted: #41454d;
+  --color-hairline: #dddddd;
+  --color-border-strong: #9297a0;
+  --color-canvas: #ffffff;
+  --color-surface-soft: #f8fafc;
+  --color-surface-strong: #e0e2e6;
+  --color-surface-dark: #181d26;
+  --color-surface-dark-elevated: #1d1f25;
+  --color-signature-cream: #f5e9d4;
+  --color-on-primary: #ffffff;
+  --color-on-dark: #ffffff;
+  --color-link: #1b61c9;
+
+  /* spacing */
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+
+  /* radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+
+  --container-max: 640px;
+
+  /* 2048-specific palette (traditional tile colors, kept identical in dark mode) */
+  --board-bg: #bbada0;
+  --cell-bg: rgba(238, 228, 218, 0.35);
+  --tile-2-bg: #eee4da;
+  --tile-4-bg: #ede0c8;
+  --tile-8-bg: #f2b179;
+  --tile-16-bg: #f59563;
+  --tile-32-bg: #f67c5f;
+  --tile-64-bg: #f65e3b;
+  --tile-128-bg: #edcf72;
+  --tile-256-bg: #edcc61;
+  --tile-512-bg: #edc850;
+  --tile-1024-bg: #edc53f;
+  --tile-2048-bg: #edc22e;
+  --tile-super-bg: #3c3a32;
+  --tile-dark-text: #776e65;
+  --tile-light-text: #f9f6f2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #f2f3f5;
+    --color-primary-active: #d8dae0;
+    --color-ink: #f2f3f5;
+    --color-body: #c7cad1;
+    --color-muted: #9297a0;
+    --color-hairline: #33373f;
+    --color-border-strong: #4a4f59;
+    --color-canvas: #14161b;
+    --color-surface-soft: #1b1e24;
+    --color-surface-strong: #262a32;
+    --color-surface-dark: #181d26;
+    --color-surface-dark-elevated: #1d1f25;
+    --color-on-primary: #14161b;
+    --color-on-dark: #ffffff;
+    --color-link: #6ea1ff;
+    /* board/tile palette intentionally unchanged — spec.md 6: "타일 팔레트는
+       다크모드에서도 원작 2048 색감을 유지" */
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-body);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Keep focus outlines visible everywhere — accessibility requirement, do not remove. */
+:focus-visible {
+  outline: 2px solid var(--color-link);
+  outline-offset: 2px;
+}
+
+.page {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md) var(--space-xxl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.app-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.back-link {
+  color: var(--color-link);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  align-self: flex-start;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.app-title {
+  /* display-lg: 40px / 400 / 1.2 */
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.app-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.scoreboard {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.score-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 80px;
+  padding: var(--space-xs) var(--space-md);
+  background: var(--color-surface-soft);
+  border-radius: var(--radius-md);
+}
+
+.score-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+}
+
+.score-value {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+/* Primary CTA — near-black filled pill per blog Do/Don't. No hover state, :active only. */
+.button-primary {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.button-primary:active {
+  background: var(--color-primary-active);
+}
+
+.button-secondary {
+  appearance: none;
+  cursor: pointer;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.button-secondary:active {
+  background: var(--color-surface-soft);
+}
+
+.board-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.board {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1 / 1;
+  background: var(--board-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
+  touch-action: none; /* swipe handling is done manually via touchstart/touchend */
+}
+
+.board-grid,
+.tile-layer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: var(--space-sm);
+}
+
+.board-grid {
+  width: 100%;
+  height: 100%;
+}
+
+.cell-bg {
+  background: var(--cell-bg);
+  border-radius: var(--radius-sm);
+}
+
+.tile-layer {
+  position: absolute;
+  inset: var(--space-sm);
+}
+
+.tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: clamp(16px, 6vw, 32px);
+  color: var(--tile-dark-text);
+  background: var(--tile-2-bg);
+  user-select: none;
+}
+
+.tile-2 {
+  background: var(--tile-2-bg);
+  color: var(--tile-dark-text);
+}
+.tile-4 {
+  background: var(--tile-4-bg);
+  color: var(--tile-dark-text);
+}
+.tile-8 {
+  background: var(--tile-8-bg);
+  color: var(--tile-light-text);
+}
+.tile-16 {
+  background: var(--tile-16-bg);
+  color: var(--tile-light-text);
+}
+.tile-32 {
+  background: var(--tile-32-bg);
+  color: var(--tile-light-text);
+}
+.tile-64 {
+  background: var(--tile-64-bg);
+  color: var(--tile-light-text);
+}
+.tile-128 {
+  background: var(--tile-128-bg);
+  color: var(--tile-light-text);
+  font-size: clamp(15px, 5.5vw, 28px);
+}
+.tile-256 {
+  background: var(--tile-256-bg);
+  color: var(--tile-light-text);
+  font-size: clamp(15px, 5.5vw, 28px);
+}
+.tile-512 {
+  background: var(--tile-512-bg);
+  color: var(--tile-light-text);
+  font-size: clamp(15px, 5.5vw, 28px);
+}
+.tile-1024 {
+  background: var(--tile-1024-bg);
+  color: var(--tile-light-text);
+  font-size: clamp(13px, 5vw, 24px);
+}
+.tile-2048 {
+  background: var(--tile-2048-bg);
+  color: var(--tile-light-text);
+  font-size: clamp(13px, 5vw, 24px);
+}
+.tile-super {
+  background: var(--tile-super-bg);
+  color: var(--tile-light-text);
+  font-size: clamp(12px, 4.5vw, 22px);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 22, 27, 0.55);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.overlay-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  max-width: 320px;
+  width: 100%;
+}
+
+/* Win overlay — signature-cream card, spec.md 6.
+   Uses a fixed dark ink color (not var(--color-ink)) because signature cards
+   keep their own colors in dark mode (CLAUDE.md: "카드가 이미 자체 배경을 갖고
+   있으므로 캔버스 반전의 영향을 받지 않는다") — var(--color-ink) flips to
+   near-white in dark mode, which would be unreadable on the cream background. */
+.overlay-card-light {
+  background: var(--color-signature-cream, #f5e9d4);
+  color: #181d26;
+}
+
+/* Game-over overlay — surface-dark card with light text, spec.md 6 */
+.overlay-card-dark {
+  background: var(--color-surface-dark);
+  color: var(--color-on-dark);
+}
+
+.overlay-title {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.overlay-message {
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.overlay-actions {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--space-xs);
+}
+
+.hint {
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+/* Responsive: 320px (mobile) up to wide desktop, per CLAUDE.md breakpoints */
+@media (min-width: 768px) {
+  .app-title {
+    font-size: 40px;
+  }
+
+  .controls-row {
+    flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 380px) {
+  .page {
+    padding: var(--space-md) var(--space-sm) var(--space-xl);
+  }
+
+  .score-box {
+    min-width: 68px;
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .button-primary,
+  .button-secondary {
+    padding: var(--space-sm) var(--space-md);
+  }
+}

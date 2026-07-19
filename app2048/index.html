@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <title>2048</title>
+  <meta name="description" content="방향키나 스와이프로 숫자 타일을 밀어 합치는 2048 퍼즐 게임" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="app-header">
+      <a class="back-link" href="../index.html">← 블로그로</a>
+      <h1 class="app-title">2048</h1>
+      <p class="app-subtitle">방향키나 스와이프로 같은 숫자 타일을 밀어서 합쳐보세요.</p>
+    </header>
+
+    <section class="controls-row" aria-label="점수 및 게임 컨트롤">
+      <div class="scoreboard">
+        <div class="score-box" aria-live="polite">
+          <span class="score-label">SCORE</span>
+          <span class="score-value" id="score-value">0</span>
+        </div>
+        <div class="score-box">
+          <span class="score-label">BEST</span>
+          <span class="score-value" id="best-value">0</span>
+        </div>
+      </div>
+      <button class="button-primary" id="new-game-btn" type="button">새 게임</button>
+    </section>
+
+    <main class="board-wrap">
+      <div class="board" id="board" role="group" aria-label="2048 게임 보드">
+        <!-- 4x4 cell backgrounds -->
+        <div class="board-grid" id="board-grid" aria-hidden="true"></div>
+        <!-- tiles are rendered here by app.js -->
+        <div class="tile-layer" id="tile-layer"></div>
+
+        <div class="overlay" id="overlay" hidden>
+          <div class="overlay-card" id="overlay-card">
+            <p class="overlay-title" id="overlay-title">승리!</p>
+            <p class="overlay-message" id="overlay-message">2048 타일을 만들었습니다.</p>
+            <div class="overlay-actions" id="overlay-actions">
+              <button class="button-primary" id="overlay-primary-btn" type="button">계속하기</button>
+              <button class="button-secondary" id="overlay-secondary-btn" type="button">새 게임</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <p class="hint">키보드: ↑ ↓ ← → &nbsp;|&nbsp; 모바일: 보드에서 스와이프</p>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

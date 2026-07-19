@@ -332,3 +332,63 @@
   flex: 1;
   margin-bottom: var(--space-sm);
 }
+
+/* mock2048-board — static decorative preview for the 2048 app-card
+   (no screenshot asset available; mimics the game's own tile palette). */
+
+.mock2048-board {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 4px;
+  padding: 8px;
+  background-color: #bbada0;
+}
+
+.mock2048-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 500;
+  background-color: rgba(238, 228, 218, 0.35);
+  color: transparent;
+}
+
+.mock2048-tile-2 {
+  background-color: #eee4da;
+  color: #776e65;
+}
+.mock2048-tile-4 {
+  background-color: #ede0c8;
+  color: #776e65;
+}
+.mock2048-tile-8 {
+  background-color: #f2b179;
+  color: #f9f6f2;
+}
+.mock2048-tile-16 {
+  background-color: #f59563;
+  color: #f9f6f2;
+}
+.mock2048-tile-32 {
+  background-color: #f67c5f;
+  color: #f9f6f2;
+}
+.mock2048-tile-64 {
+  background-color: #f65e3b;
+  color: #f9f6f2;
+}
+.mock2048-tile-128 {
+  background-color: #edcf72;
+  color: #f9f6f2;
+  font-size: 10px;
+}
+.mock2048-tile-2048 {
+  background-color: #edc22e;
+  color: #f9f6f2;
+  font-size: 10px;
+}
